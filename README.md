@@ -26,8 +26,9 @@ Design interactif — ECV Bordeaux — 2016
   * Y revenir avec [p5.js](http://p5js.org/) , « Processing pour le web »
     * [Vidéo de présentation](https://www.youtube.com/watch?v=8j0UDiN7my4) de Daniel Shiffman.  
     * **p5.js** <-> Javascript <-> HTML <-> CSS
-    * 
-
+    * Autres librairies similaires : [paper.js](http://paperjs.org/), [three.js](http://threejs.org/), [two.js](http://jonobr1.github.io/two.js/) 
+* Anatomie d'un programme écrit en p5.js, premiers exemples
+  *   
 
 
 
