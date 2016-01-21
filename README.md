@@ -31,7 +31,7 @@ Design interactif — ECV Bordeaux — 2016
 * **Communauté** : 
   * www.processing.org, www.openprocessing.org  
   * quelques sites d'animation : http://beesandbombs.tumblr.com, www.beautifulprogramming.com
-* **Anatomie d'un programme**
+* C'est parti !  **Anatomie d'un programme**
   * gestionnaire de démarrage (setup) et de dessin (draw)
   * repère de dessin
   * dessin de formes géométriques
