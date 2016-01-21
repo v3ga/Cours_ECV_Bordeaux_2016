@@ -1,8 +1,8 @@
-Atelier Processing à Stereolux 2015
+Design interactif — ECV Bordeaux — 2016
 ====================================
 
-## Production
-![Composition](http://v3ga.github.io/Images/Workshop_Processing_Stereolux_2015/composition.ok.png)
+## Cours #01 — Introduction — 22/01
+
 
 
 
