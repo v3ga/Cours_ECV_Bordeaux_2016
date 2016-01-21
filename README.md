@@ -28,7 +28,7 @@ Design interactif — ECV Bordeaux — 2016
     * [Vidéo de présentation](https://www.youtube.com/watch?v=8j0UDiN7my4) de Daniel Shiffman.  
     * **p5.js** <-> Javascript <-> HTML <-> CSS
     * Autres librairies similaires : [paper.js](http://paperjs.org/), [three.js](http://threejs.org/), [two.js](http://jonobr1.github.io/two.js/) 
-* Communauté : 
+* **Communauté** : 
   * www.processing.org, www.openprocessing.org  
   * quelques sites d'animation : http://beesandbombs.tumblr.com, www.beautifulprogramming.com
 * **Anatomie d'un programme**
