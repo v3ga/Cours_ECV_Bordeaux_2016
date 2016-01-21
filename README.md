@@ -18,7 +18,7 @@ Design interactif — ECV Bordeaux — 2016
     * [Aaron Koblin](http://www.aaronkoblin.com)
   * Références complémentaires : 
     * [Histoire, épistémologie de l'informatique et Révolution technologique](http://cristal.inria.fr/~weis/info/histoire_de_l_info.html)  
-    * [A critical history ofcomputer graphics and animation](http://design.osu.edu/carlson/history/lesson1.html)
+    * [A critical history of computer graphics and animation](http://design.osu.edu/carlson/history/lesson1.html)
 * **Processing**, un outil de création graphique interactive pour les artistes et designers.
   * Descendant direct de [Design by numbers](http://dbn.media.mit.edu/) créé par [John Maeda](http://www.maedastudio.com/index.php)
   * Outils similaires de création avec du code : [Openframeworks](http://www.openframeworks.cc/), [Cinder](https://libcinder.org/)
