@@ -28,7 +28,8 @@ Design interactif — ECV Bordeaux — 2016
     * **p5.js** <-> Javascript <-> HTML <-> CSS
     * Autres librairies similaires : [paper.js](http://paperjs.org/), [three.js](http://threejs.org/), [two.js](http://jonobr1.github.io/two.js/) 
 * Communauté : 
-  * processing.org, openprocessing.org  
+  * www.processing.org, www.openprocessing.org  
+  * quelques sites d'animation : http://beesandbombs.tumblr.com, www.beautifulprogramming.com
 * **Anatomie d'un programme**
   * gestionnaire de démarrage (setup) et de dessin (draw)
   * repère de dessin
