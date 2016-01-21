@@ -27,9 +27,15 @@ Design interactif — ECV Bordeaux — 2016
     * [Vidéo de présentation](https://www.youtube.com/watch?v=8j0UDiN7my4) de Daniel Shiffman.  
     * **p5.js** <-> Javascript <-> HTML <-> CSS
     * Autres librairies similaires : [paper.js](http://paperjs.org/), [three.js](http://threejs.org/), [two.js](http://jonobr1.github.io/two.js/) 
-* Anatomie d'un programme écrit en p5.js, premiers exemples
-  *   
+* Communauté : 
+  * processing.org, openprocessing.org  
+* **Anatomie d'un programme**
+  * gestionnaire de démarrage (setup) et de dessin (draw)
+  * repère de dessin
+  * dessin de formes géométriques
+  * commentaires
 
+## Cours #02 — Animation — 29 janvier
 
 
 
