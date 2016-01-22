@@ -3,7 +3,7 @@ Design interactif — ECV Bordeaux — 2016
 
 ## Cours #01 — Introduction — 22 janvier
 
-* **Bonjour !** Présentation de Julien Gachadoat et du studio [2Roqs](http://www.2roqs.fr)
+* **Bonjour !** Présentation du studio [2Roqs](http://www.2roqs.fr)
   * [projets artistiques](http://www.2roqs.fr/Exhibitions/)
   * [projets institutionnels](http://www.2roqs.fr/Works/)
   * collaborations
