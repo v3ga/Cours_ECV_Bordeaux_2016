@@ -32,7 +32,7 @@ Design interactif — ECV Bordeaux — 2016
   * www.processing.org, www.openprocessing.org  
   * quelques sites d'animation : http://beesandbombs.tumblr.com, www.beautifulprogramming.com
 
-## Cours #02 — Animer — 29 janvier
+## Cours #02 — Animer et montrer — 29 janvier
 * C'est parti !  **Anatomie d'un programme**
   * gestionnaire de démarrage (setup) et de dessin (draw)
   * repère de dessin, dimensions de l'élément « canvas ».
