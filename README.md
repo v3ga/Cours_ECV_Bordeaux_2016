@@ -33,19 +33,19 @@ Design interactif — ECV Bordeaux — 2016
   * quelques sites d'animation : http://beesandbombs.tumblr.com, www.beautifulprogramming.com
 
 ## Cours #02 — Animer et montrer — 29 janvier
-* C'est parti !  **Anatomie d'un programme**
+* **C'est parti !**  
   * gestionnaire de démarrage (setup) et de dessin (draw)
   * repère de dessin, dimensions de l'élément « canvas ».
   * dessin de formes géométriques : [ligne](http://p5js.org/reference/#/p5/line), [retangle](http://p5js.org/reference/#/p5/rect), [ellipse](http://p5js.org/reference/#/p5/ellipse), [triangle](http://p5js.org/reference/#/p5/triangle), [quad](http://p5js.org/reference/#/p5/quad), [polygones](http://p5js.org/reference/#/p5/beginShape), etc ...
   * modèle de couleur RGB, transparence + options de dessin ([strokeWeight](http://p5js.org/reference/#/p5/strokeWeight), [stroke](http://p5js.org/reference/#/p5/stroke), [fill](http://p5js.org/reference/#/p5/fill))
-* On bouge!
+* **On bouge!**
   * aléatoire avec [random](http://p5js.org/reference/#/p5/random)  
   * interactif avec la position de la souris ([mouseX](http://p5js.org/reference/#/p5/mouseX) & [mouseY](http://p5js.org/reference/#/p5/mouseY))
-* Ça ne marche pas, que faire ? 
+* **Ça ne marche pas, on fait quoi ?**
   * [A field guide de to debugging](http://p5js.org/tutorials/debugging/)
   * console javascript. 
-* Téléchargement en ligne : 
-  * logiciel FTP
+* ** Publier son travail ** 
+  * mise en ligne sur un espace web
    
 ## Méthodologie
 ### En cours
