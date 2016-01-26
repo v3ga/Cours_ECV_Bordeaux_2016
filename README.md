@@ -34,7 +34,7 @@ Design interactif — ECV Bordeaux — 2016
 
 ## Cours #02 — Animer et montrer — 29 janvier
 * **C'est parti !**  
-  * gestionnaire de démarrage (setup) et de dessin (draw)
+  * gestionnaire de démarrage ([setup](http://p5js.org/reference/#/p5/setup)) et de dessin ([draw](http://p5js.org/reference/#/p5/draw))
   * repère de dessin, dimensions de l'élément « canvas ».
   * dessin de formes géométriques : [ligne](http://p5js.org/reference/#/p5/line), [retangle](http://p5js.org/reference/#/p5/rect), [ellipse](http://p5js.org/reference/#/p5/ellipse), [triangle](http://p5js.org/reference/#/p5/triangle), [quad](http://p5js.org/reference/#/p5/quad), [polygones](http://p5js.org/reference/#/p5/beginShape), etc ...
   * modèle de couleur RGB, transparence + options de dessin ([strokeWeight](http://p5js.org/reference/#/p5/strokeWeight), [stroke](http://p5js.org/reference/#/p5/stroke), [fill](http://p5js.org/reference/#/p5/fill))
@@ -46,10 +46,20 @@ Design interactif — ECV Bordeaux — 2016
   * console javascript. 
 * **Publier son travail** 
   * mise en ligne sur un espace web
-   
-## Méthodologie
+
+## Cours #03 — 5 février
+## Cours #04 — 12 février
+
+## Méthodologie de travail
 ### En cours
+Les onze cours seront divisés en deux phases : une phase d'apprentissage des « briques » de base de la programmation, qui donneront les structures et notions élémentaires. Pendant ce premier temps, un cours sera divisé en deux parties, la première plus « théorique » (~2h) où l'on apprendra des concepts essentiels en s'appuyant sur des exemples ludiques interactifs. La deuxième partie sera un temps d'accompagnement sur les exercices proposés pour la semaine suivante. 
+La deuxième phase se déroulera sur un modèle d'atelier où l'objectif sera de préparer une installation composée de créations personnelles et/ou en groupe sur un thème donné (à déterminer). Certaines notions pourront bien entendu être revues mais le cours laissera place à la réalisation de ce projet avec un accompagnement personnel.
+
 ### Exercices
+Chaque semaine un ou deux exercices seront donnés à réaliser pour la semaine suivante. Pour les exercices de programmation ils seront publiés en ligne. Il sera demandé pour chaque exercice de trouver un titre et d'apporter une courte explication sur l'intention graphique.
+
+### Notes
+Deux notes seront données, une pour le rendu des exercices et une pour le projet en lui-même.
 
 
 
