@@ -44,7 +44,7 @@ Design interactif — ECV Bordeaux — 2016
 * **Ça ne marche pas, on fait quoi ?**
   * [A field guide de to debugging](http://p5js.org/tutorials/debugging/)
   * console javascript. 
-* ** Publier son travail ** 
+* **Publier son travail** 
   * mise en ligne sur un espace web
    
 ## Méthodologie
