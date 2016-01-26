@@ -21,7 +21,7 @@ Design interactif — ECV Bordeaux — 2016
     * [Histoire, épistémologie de l'informatique et Révolution technologique](http://cristal.inria.fr/~weis/info/histoire_de_l_info.html)  
     * [A critical history of computer graphics and animation](http://design.osu.edu/carlson/history/lesson1.html)
 * **Processing**, un outil de création graphique interactive pour les artistes et designers.
-  * Descendant direct de [Design by numbers](http://dbn.media.mit.edu/) créé par [John Maeda](http://www.maedastudio.com/index.php)
+  * Dérivé direct de [Design by numbers](http://dbn.media.mit.edu/) créé par [John Maeda](http://www.maedastudio.com/index.php)
   * Outils similaires de création avec du code : [Openframeworks](http://www.openframeworks.cc/), [Cinder](https://libcinder.org/)
   * Sortir de l'écran avec [Arduino](https://www.arduino.cc/) / « tangible computing » 
   * Y revenir avec [p5.js](http://p5js.org/) , « Processing pour le web »
