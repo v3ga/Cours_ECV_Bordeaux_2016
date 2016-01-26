@@ -1,6 +1,8 @@
 Design interactif — ECV Bordeaux — 2016
 ====================================
 
+*«L'ordinateur, si étonnant soit-il, n'est pour le moment qu'un outil qui permet de libérer le peintre des pesanteurs dun héritage classique sclérosé. Son immense capacité combinatoire facilite l'investigation systématique du champ infini des possibles.»* — [Vera Molnar](http://www.veramolnar.com/)
+
 ## Cours #01 — Démarrer — 22 janvier
 
 * **Bonjour !** Présentation du studio [2Roqs](http://www.2roqs.fr)
@@ -46,6 +48,9 @@ Design interactif — ECV Bordeaux — 2016
   * console javascript. 
 * **Publier son travail** 
   * mise en ligne sur un espace web
+* À lire :
+  * [«L'algorithme en art et en science»](http://algorithme.beautifulseams.com/) par Louis Eveillard.  
+
 
 ## Cours #03 — 5 février
 ## Cours #04 — 12 février
