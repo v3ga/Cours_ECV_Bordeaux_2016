@@ -41,7 +41,8 @@ Design interactif — ECV Bordeaux — 2016
   * dessin de formes géométriques : [ligne](http://p5js.org/reference/#/p5/line), [retangle](http://p5js.org/reference/#/p5/rect), [ellipse](http://p5js.org/reference/#/p5/ellipse), [triangle](http://p5js.org/reference/#/p5/triangle), [quad](http://p5js.org/reference/#/p5/quad), [polygones](http://p5js.org/reference/#/p5/beginShape), etc ...
   * modèle de couleur RGB, transparence + options de dessin ([strokeWeight](http://p5js.org/reference/#/p5/strokeWeight), [stroke](http://p5js.org/reference/#/p5/stroke), [fill](http://p5js.org/reference/#/p5/fill))
 * **On bouge!**
-  * aléatoire avec [random](http://p5js.org/reference/#/p5/random)  
+  * aléatoire avec [random](http://p5js.org/reference/#/p5/random)
+  * Le temps avec [frameCount](http://p5js.org/reference/#/p5/frameCount)
   * interactif avec la position de la souris ([mouseX](http://p5js.org/reference/#/p5/mouseX) & [mouseY](http://p5js.org/reference/#/p5/mouseY))
 * **Ça ne marche pas, on fait quoi ?**
   * [A field guide de to debugging](http://p5js.org/tutorials/debugging/)
