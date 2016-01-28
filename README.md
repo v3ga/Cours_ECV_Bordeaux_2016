@@ -48,21 +48,27 @@ Design interactif — ECV Bordeaux — 2016
   * [A field guide de to debugging](http://p5js.org/tutorials/debugging/)
   * console javascript. 
 * **Publier son travail** 
-  * mise en ligne sur un espace web
+  * mise en ligne sur un espace web via FTP (télécharger [Filezilla](https://filezilla-project.org/))
 * À lire :
   * [«L'algorithme en art et en science»](http://algorithme.beautifulseams.com/) par Louis Eveillard.  
 
+#### Exercices — à rendre pour le Mercredi 3 Février
+1. Sélectionner deux formes géométriques de votre choix et générer une composition graphique programmée.
+2. Ajouter du mouvement au premier sketch (position souris, aléatoire ou temps)
 
 ## Cours #03 — 5 février
 ## Cours #04 — 12 février
 
 ## Méthodologie de travail
 ### En cours
-Les onze cours seront divisés en deux phases : une phase d'apprentissage des « briques » de base de la programmation, qui donneront les structures et notions élémentaires. Pendant ce premier temps, un cours sera divisé en deux parties, la première plus « théorique » (~2h) où l'on apprendra des concepts essentiels en s'appuyant sur des exemples ludiques interactifs. La deuxième partie sera un temps d'accompagnement sur les exercices proposés pour la semaine suivante. 
+Les onze cours seront divisés en deux phases : une phase d'apprentissage des « briques » de base de la programmation, qui donneront les structures et notions élémentaires.
+Pendant ce premier temps, un cours sera divisé en deux parties, la première plus « théorique » (~2h) où l'on apprendra des concepts essentiels en s'appuyant sur des exemples ludiques interactifs. La deuxième partie sera un temps d'accompagnement sur les exercices proposés pour la semaine suivante.
+
 La deuxième phase se déroulera sur un modèle d'atelier où l'objectif sera de préparer une installation composée de créations personnelles et/ou en groupe sur un thème donné (à déterminer). Certaines notions pourront bien entendu être revues mais le cours laissera place à la réalisation de ce projet avec un accompagnement personnel.
 
 ### Exercices
 Chaque semaine un ou deux exercices seront donnés à réaliser pour la semaine suivante. Pour les exercices de programmation ils seront publiés en ligne. Il sera demandé pour chaque exercice de trouver un titre et d'apporter une courte explication sur l'intention graphique.
+Les exercices seront à rendre au plus tard le mercredi soir à 19h, mercredi qui précéde le cours du vendredi, sauf si indication contraire.
 
 ### Notes
 Deux notes seront données, une pour le rendu des exercices et une pour le projet en lui-même.
