@@ -52,7 +52,7 @@ Design interactif — ECV Bordeaux — 2016
 * À lire :
   * [«L'algorithme en art et en science»](http://algorithme.beautifulseams.com/) par Louis Eveillard.  
 
-#### Exercices — à rendre pour le Jeud 4 février (avant 18h)
+#### Exercices — à rendre pour le jeudi 4 février (avant 18h)
 1. Sélectionner deux formes géométriques de votre choix et générer une composition graphique programmée.
 2. Ajouter du mouvement au premier sketch (position souris, aléatoire ou temps)
 
