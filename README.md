@@ -63,6 +63,7 @@ Design interactif — ECV Bordeaux — 2016
  * variables : écriture et lecture
 * **Fonction**
  * « grouper » des commandes.
+
 #### Exercice — à rendre pour le jeudi 11 février (avant 18h)
 
 
