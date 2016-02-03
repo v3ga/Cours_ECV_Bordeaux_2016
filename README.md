@@ -59,11 +59,10 @@ Design interactif — ECV Bordeaux — 2016
 
 ## Cours #03 — Mémoriser — 5 février
 * Rattrapage cours #02 : notions de temps et interactivité souris ([mouseX](http://p5js.org/reference/#/p5/mouseX) & [mouseY](http://p5js.org/reference/#/p5/mouseY)) + gestionnaires souris ([mousePressed()](http://p5js.org/reference/#/p5/mousePressed))
-* ** Stocker de l'information ** 
- * notion de variables : écriture et lecture
-* ** Fonction **
+* **Stocker de l'information** 
+ * variables : écriture et lecture
+* **Fonction**
  * « grouper » des commandes.
- * définir un 
 #### Exercice — à rendre pour le jeudi 11 février (avant 18h)
 
 
