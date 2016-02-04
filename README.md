@@ -59,13 +59,18 @@ Design interactif — ECV Bordeaux — 2016
 
 ## Cours #03 — Mémoriser — 5 février
 * Rattrapage cours #02 : notions de temps et interactivité souris ([mouseX](http://p5js.org/reference/#/p5/mouseX) & [mouseY](http://p5js.org/reference/#/p5/mouseY)) + gestionnaires souris ([mousePressed()](http://p5js.org/reference/#/p5/mousePressed))
+* **Transformations du plan**
+  * déplace l'origine du repère avec [translate](http://p5js.org/reference/#/p5/translate)
+  * pivoter les axes X et Y avec [rotate](http://p5js.org/reference/#/p5/rotate)
+  * changer d'échelle avec [scale](http://p5js.org/reference/#/p5/scale)
 * **Stocker de l'information** 
- * variables : écriture et lecture
-* **Fonction**
- * « grouper » des commandes.
+ * stockage d'informations (nombres et textes)
+ * stockage de médias : image ([loadImage](http://p5js.org/reference/#/p5/loadImage)) et fonte ([loadFont](http://p5js.org/reference/#/p5/loadFont))
+ * exporter le canvas ([saveCanvas](http://p5js.org/reference/#/p5/saveCanvas))
 
 #### Exercice — à rendre pour le jeudi 11 février (avant 18h)
-
+1. Programmer une horloge.
+2. Créer un collage à partir de plusieurs images, dont l'une au moins des image sera réactive (au temps, à la souris, au clavier ...)
 
 ## Cours #04 — 12 février
 
