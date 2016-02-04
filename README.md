@@ -68,6 +68,12 @@ Design interactif — ECV Bordeaux — 2016
  * stockage de médias : image ([loadImage](http://p5js.org/reference/#/p5/loadImage)) et fonte ([loadFont](http://p5js.org/reference/#/p5/loadFont))
  * exporter le canvas ([saveCanvas](http://p5js.org/reference/#/p5/saveCanvas))
 
+
+#### Liens
+* Daniel Shiffman — [Variables in p5.js (mouseX,mouseY)](https://www.youtube.com/watch?v=RnS0YNuLfQQ&index=5&list=PLRqwX-V7Uu6Zy51Q-x9tMWIv9cueOFTFA)
+* Daniel Shiffman — [Variables in p5.js (make your own)] (https://www.youtube.com/watch?v=Bn_B3T_Vbxs&index=6&list=PLRqwX-V7Uu6Zy51Q-x9tMWIv9cueOFTFA)
+* John Kuiphoff — [Introduction to interactive computing](http://coursescript.com/notes/interactivecomputing/index.html)
+
 #### Exercice — à rendre pour le jeudi 11 février (avant 18h)
 1. Programmer une horloge.
 2. Créer un collage à partir de plusieurs images, dont l'une au moins des image sera réactive (au temps, à la souris, au clavier ...)
