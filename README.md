@@ -65,9 +65,7 @@ Design interactif — ECV Bordeaux — 2016
   * changer d'échelle avec [scale](http://p5js.org/reference/#/p5/scale)
 * **Stocker de l'information** 
  * stockage d'informations (nombres et textes)
- * stockage de médias : image ([loadImage](http://p5js.org/reference/#/p5/loadImage)) et fonte ([loadFont](http://p5js.org/reference/#/p5/loadFont))
  * exporter le canvas ([saveCanvas](http://p5js.org/reference/#/p5/saveCanvas))
-
 
 #### Liens
 * Daniel Shiffman — [Variables in p5.js (mouseX,mouseY)](https://www.youtube.com/watch?v=RnS0YNuLfQQ&index=5&list=PLRqwX-V7Uu6Zy51Q-x9tMWIv9cueOFTFA)
@@ -76,9 +74,16 @@ Design interactif — ECV Bordeaux — 2016
 
 #### Exercice — à rendre pour le jeudi 11 février (avant 18h)
 1. Programmer une horloge.
-2. Créer un collage à partir de plusieurs images, dont l'une au moins des image sera réactive (au temps, à la souris, au clavier ...)
+2. Programmer un motif géométrique dynamique en utilisant une combinaison de translate / rotate / scale, exporter plusieurs images avec la fonction [saveCanvas](http://p5js.org/reference/#/p5/saveCanvas)
 
 ## Cours #04 — 12 février
+* Gestion des médias : 
+ * chargement d'une image ([loadImage](http://p5js.org/reference/#/p5/loadImage)) et d'une fonte ([loadFont](http://p5js.org/reference/#/p5/loadFont))
+* Définir ses propres fonctions
+* Définir un objet avec des propriétés et des fonctions associée.
+
+#### Exercice 
+
 
 ## Méthodologie de travail
 ### En cours
