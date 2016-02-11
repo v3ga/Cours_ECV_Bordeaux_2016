@@ -2,7 +2,7 @@ var font;
 
 function preload()
 {
-	font = loadFont("data/futura.ttf");
+	font = loadFont("assets/futura.ttf");
 }
 
 function setup()

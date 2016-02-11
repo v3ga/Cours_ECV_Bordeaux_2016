@@ -2,7 +2,7 @@ var img;
 
 function preload()
 {
-	img = loadImage("data/introspector_encoded_matter2.jpg");
+	img = loadImage("assets/introspector_encoded_matter2.jpg");
 }
 
 function setup()
