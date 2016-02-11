@@ -82,9 +82,9 @@ Design interactif — ECV Bordeaux — 2016
 * chargement d'une image ([loadImage](http://p5js.org/reference/#/p5/loadImage)), d'une fonte ([loadFont](http://p5js.org/reference/#/p5/loadFont)).
 * les [librairies](http://p5js.org/libraries/) dans p5.js : 
  * chargement et lecture d'un son via [p5.sound.js](http://p5js.org/reference/#/libraries/p5.sound)
- * reconnaissance vocale via [p5.speech.js](http://abilitylab.nyu.edu/p5.js-speech/)
+ * reconnaissance et génération vocale via [p5.speech.js](http://abilitylab.nyu.edu/p5.js-speech/)
 
-#### Exercice
+#### Exercice — à rendre pour le jeudi 18 février
 1. Réaliser un collage d'images / photos avec plusieurs images dont une au moins est en interaction avec la souris ou le son. Bonus s'il y a du son !
 2. Imaginer un système transformant le volume sonore du micro en une image dynamique. Petit truc pour ne pas s'égosiller : jouer un morceau de musique ou des sons pour tester le système.
 
