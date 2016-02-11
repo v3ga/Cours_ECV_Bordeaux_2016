@@ -76,13 +76,17 @@ Design interactif — ECV Bordeaux — 2016
 1. Programmer une horloge.
 2. Programmer un motif géométrique dynamique en utilisant une combinaison de translate / rotate / scale, exporter plusieurs images avec la fonction [saveCanvas](http://p5js.org/reference/#/p5/saveCanvas)
 
-## Cours #04 — 12 février
-* Gestion des médias : 
- * chargement d'une image ([loadImage](http://p5js.org/reference/#/p5/loadImage)) et d'une fonte ([loadFont](http://p5js.org/reference/#/p5/loadFont))
-* Définir ses propres fonctions
-* Définir un objet avec des propriétés et des fonctions associée.
+## Cours #04 — Charger et écouter — 12 février
+* Définir ses propres fonctions : mot clé **function**
+* Démarrer un serveur local : [Local server tutorial](https://github.com/shiffman/The-Nature-of-Code-JTerm-2015/wiki/Local-Server-Tutorial) L'interêt est de pouvoir accéder au sketch depuis le navigateur par des adresses en *http://* (et non via *file://*), ce sera nécessaire pour charger des médias (images, fontes, sons).
+* chargement d'une image ([loadImage](http://p5js.org/reference/#/p5/loadImage)), d'une fonte ([loadFont](http://p5js.org/reference/#/p5/loadFont)).
+* les [librairies](http://p5js.org/libraries/) dans p5.js : 
+ * chargement et lecture d'un son via [p5.sound.js](http://p5js.org/reference/#/libraries/p5.sound)
+ * reconnaissance vocale via [p5.speech.js](http://abilitylab.nyu.edu/p5.js-speech/)
 
-#### Exercice 
+#### Exercice
+1. Réaliser un collage d'images / photos avec plusieurs images dont une au moins est en interaction avec la souris ou le son. Bonus s'il y a du son !
+2. Imaginer un système transformant le volume sonore du micro en une image dynamique. Petit truc pour ne pas s'égosiller : jouer un morceau de musique ou des sons pour tester le système.
 
 
 ## Méthodologie de travail
