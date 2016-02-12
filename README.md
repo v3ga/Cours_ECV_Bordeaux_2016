@@ -3,6 +3,13 @@ Design interactif — ECV Bordeaux — 2016
 
 *«L'ordinateur, si étonnant soit-il, n'est pour le moment qu'un outil qui permet de libérer le peintre des pesanteurs d'un héritage classique sclérosé. Son immense capacité combinatoire facilite l'investigation systématique du champ infini des possibles.»* — [Vera Molnar](http://www.veramolnar.com/)
 
+* [Cours 01](#cours01)
+* [Cours 02](#cours02)
+* [Cours 03](#cours03)
+* [Cours 04](#cours03)
+* [Méthodologie](#methodo)
+
+<a name="cours01" />
 ## Cours #01 — Démarrer — 22 janvier
 
 * **Bonjour !** Présentation du studio [2Roqs](http://www.2roqs.fr)
@@ -34,6 +41,7 @@ Design interactif — ECV Bordeaux — 2016
   * www.processing.org, www.openprocessing.org  
   * quelques sites d'animation : http://beesandbombs.tumblr.com, www.beautifulprogramming.com
 
+<a name="cours02" />
 ## Cours #02 — Animer et montrer — 29 janvier
 * **C'est parti !**  
   * gestionnaire de démarrage ([setup](http://p5js.org/reference/#/p5/setup)) et de dessin ([draw](http://p5js.org/reference/#/p5/draw))
@@ -57,6 +65,7 @@ Design interactif — ECV Bordeaux — 2016
 #### Liens
 * [«L'algorithme en art et en science»](http://algorithme.beautifulseams.com/) par Louis Eveillard.  
 
+<a name="cours03" />
 ## Cours #03 — Mémoriser — 5 février
 * Rattrapage cours #02 : notions de temps et interactivité souris ([mouseX](http://p5js.org/reference/#/p5/mouseX) & [mouseY](http://p5js.org/reference/#/p5/mouseY)) + gestionnaires souris ([mousePressed()](http://p5js.org/reference/#/p5/mousePressed))
 * **Transformations du plan**
@@ -76,6 +85,7 @@ Design interactif — ECV Bordeaux — 2016
 1. Programmer une horloge.
 2. Programmer un motif géométrique dynamique en utilisant une combinaison de translate / rotate / scale, exporter plusieurs images avec la fonction [saveCanvas](http://p5js.org/reference/#/p5/saveCanvas)
 
+<a name="cours04" />
 ## Cours #04 — Charger et écouter — 12 février
 * Définir ses propres fonctions : mot clé **function**
 * Démarrer un serveur local : [Local server tutorial](https://github.com/shiffman/The-Nature-of-Code-JTerm-2015/wiki/Local-Server-Tutorial) L'interêt est de pouvoir accéder au sketch depuis le navigateur par des adresses en *http://* (et non via *file://*), ce sera nécessaire pour charger des médias (images, fontes, sons).
@@ -89,6 +99,7 @@ Design interactif — ECV Bordeaux — 2016
 2. Imaginer un système transformant le volume sonore du micro en une image dynamique. Petit truc pour ne pas s'égosiller : jouer un morceau de musique ou des sons pour tester le système.
 
 
+<a name="methodo" />
 ## Méthodologie de travail
 ### En cours
 Les onze cours seront divisés en deux phases : une phase d'apprentissage des « briques » de base de la programmation, qui donneront les structures et notions élémentaires.
