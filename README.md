@@ -3,13 +3,16 @@ Design interactif — ECV Bordeaux — 2016
 
 *«L'ordinateur, si étonnant soit-il, n'est pour le moment qu'un outil qui permet de libérer le peintre des pesanteurs d'un héritage classique sclérosé. Son immense capacité combinatoire facilite l'investigation systématique du champ infini des possibles.»* — [Vera Molnar](http://www.veramolnar.com/)
 
-## Cours
+### Cours
 
 * [Cours #01 — Démarrer — 22 janvier](#cours01)
 * [Cours #02 — Animer et montrer — 29 janvier](#cours02)
 * [Cours #03 — Mémoriser — 5 février](#cours03)
 * [Cours #04 — Charger et écouter — 12 février](#cours04)
 * [Méthodologie](#methodo)
+
+### Rendus
+http://www.v3ga.net/~ecv/2016/rendus/
 
 <a name="cours01" />
 ## Cours #01 — Démarrer — 22 janvier
