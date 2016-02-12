@@ -93,6 +93,7 @@ http://www.v3ga.net/~ecv/2016/rendus/
 <a name="cours04" />
 ## Cours #04 — Charger et écouter — 12 février
 * Définir ses propres fonctions : mot clé **function**
+* Utiliser des variables pour modéliser les propriétés d'un objet. Utilisation de la structure de contrôle **if** pour limiter l'objet sur l'écran. 
 * Démarrer un serveur local : [Local server tutorial](https://github.com/shiffman/The-Nature-of-Code-JTerm-2015/wiki/Local-Server-Tutorial) L'interêt est de pouvoir accéder au sketch depuis le navigateur par des adresses en *http://* (et non via *file://*), ce sera nécessaire pour charger des médias (images, fontes, sons).
 * chargement d'une image ([loadImage](http://p5js.org/reference/#/p5/loadImage)), d'une fonte ([loadFont](http://p5js.org/reference/#/p5/loadFont)).
 * les [librairies](http://p5js.org/libraries/) dans p5.js : 
