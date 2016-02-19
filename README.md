@@ -8,7 +8,7 @@ Design interactif — ECV Bordeaux — 2016
 * [Cours #01 — Démarrer — 22 janvier](#cours01)
 * [Cours #02 — Animer et montrer — 29 janvier](#cours02)
 * [Cours #03 — Mémoriser — 5 février](#cours03)
-* [Cours #04 — Onduler et écouter — 12 février](#cours04)
+* [Cours #04 — Onduler et charger — 12 février](#cours04)
 * [Cours #05 — Modéliser — 4 mars](#cours04)
 * [Méthodologie](#methodo)
 
