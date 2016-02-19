@@ -8,7 +8,8 @@ Design interactif — ECV Bordeaux — 2016
 * [Cours #01 — Démarrer — 22 janvier](#cours01)
 * [Cours #02 — Animer et montrer — 29 janvier](#cours02)
 * [Cours #03 — Mémoriser — 5 février](#cours03)
-* [Cours #04 — Charger et écouter — 12 février](#cours04)
+* [Cours #04 — Onduler et écouter — 12 février](#cours04)
+* [Cours #05 — Modéliser — 4 mars](#cours04)
 * [Méthodologie](#methodo)
 
 ### Rendus
@@ -92,18 +93,19 @@ http://www.v3ga.net/~ecv/2016/rendus/
 
 <a name="cours04" />
 ## Cours #04 — Onduler et charger — 12 février
+* Fonctions trigonométriques : sinus et cosinus.
 * Démarrer un serveur local : [Local server tutorial](https://github.com/shiffman/The-Nature-of-Code-JTerm-2015/wiki/Local-Server-Tutorial) L'interêt est de pouvoir accéder au sketch depuis le navigateur par des adresses en *http://* (et non via *file://*), ce sera nécessaire pour charger des médias (images, fontes, sons).
 * chargement d'une image ([loadImage](http://p5js.org/reference/#/p5/loadImage)), d'une fonte ([loadFont](http://p5js.org/reference/#/p5/loadFont)).
 * les [librairies](http://p5js.org/libraries/) dans p5.js : 
  * chargement et lecture d'un son via [p5.sound.js](http://p5js.org/reference/#/libraries/p5.sound)
  * reconnaissance et génération vocale via [p5.speech.js](http://abilitylab.nyu.edu/p5.js-speech/)
 
-#### Exercice — à rendre pour le jeudi 18 février
+#### Exercice — à rendre pour le mercredi 3 mars
 1. Réaliser un collage d'images / photos avec plusieurs images dont une au moins est en interaction avec la souris ou le son. Bonus s'il y a du son !
 2. Imaginer un système transformant le volume sonore du micro en une image dynamique. Petit truc pour ne pas s'égosiller : jouer un morceau de musique ou des sons pour tester le système.
 
-
-## Cours #05 — Modéliser
+<a name="cours05" />
+## Cours #05 — Modéliser — 4 mars
 * Définir ses propres fonctions : mot clé **function**
 * Structure de contrôle **if**
 * Utiliser des variables pour modéliser les propriétés d'un objet. Utilisation de la structure de contrôle **if** pour limiter l'objet sur l'écran.
