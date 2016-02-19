@@ -91,9 +91,7 @@ http://www.v3ga.net/~ecv/2016/rendus/
 2. Programmer un motif géométrique dynamique en utilisant une combinaison de translate / rotate / scale, exporter plusieurs images avec la fonction [saveCanvas](http://p5js.org/reference/#/p5/saveCanvas)
 
 <a name="cours04" />
-## Cours #04 — Charger et écouter — 12 février
-* Définir ses propres fonctions : mot clé **function**
-* Utiliser des variables pour modéliser les propriétés d'un objet. Utilisation de la structure de contrôle **if** pour limiter l'objet sur l'écran. 
+## Cours #04 — Onduler et charger — 12 février
 * Démarrer un serveur local : [Local server tutorial](https://github.com/shiffman/The-Nature-of-Code-JTerm-2015/wiki/Local-Server-Tutorial) L'interêt est de pouvoir accéder au sketch depuis le navigateur par des adresses en *http://* (et non via *file://*), ce sera nécessaire pour charger des médias (images, fontes, sons).
 * chargement d'une image ([loadImage](http://p5js.org/reference/#/p5/loadImage)), d'une fonte ([loadFont](http://p5js.org/reference/#/p5/loadFont)).
 * les [librairies](http://p5js.org/libraries/) dans p5.js : 
@@ -103,6 +101,17 @@ http://www.v3ga.net/~ecv/2016/rendus/
 #### Exercice — à rendre pour le jeudi 18 février
 1. Réaliser un collage d'images / photos avec plusieurs images dont une au moins est en interaction avec la souris ou le son. Bonus s'il y a du son !
 2. Imaginer un système transformant le volume sonore du micro en une image dynamique. Petit truc pour ne pas s'égosiller : jouer un morceau de musique ou des sons pour tester le système.
+
+
+## Cours #05 — Modéliser
+* Définir ses propres fonctions : mot clé **function**
+* Structure de contrôle **if**
+* Utiliser des variables pour modéliser les propriétés d'un objet. Utilisation de la structure de contrôle **if** pour limiter l'objet sur l'écran.
+* Gestion d'une collection d'objets, modélisation d'un système de particules.
+* Démarrage du projet, discussion, idées.
+
+#### Exercice 
+
 
 
 <a name="methodo" />
