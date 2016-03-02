@@ -100,9 +100,9 @@ http://www.v3ga.net/~ecv/2016/rendus/
  * chargement et lecture d'un son via [p5.sound.js](http://p5js.org/reference/#/libraries/p5.sound)
  * reconnaissance et génération vocale via [p5.speech.js](http://abilitylab.nyu.edu/p5.js-speech/)
 
-#### Exercice — à rendre pour le mercredi 3 mars
+#### Exercice — à rendre pour le vendredi 4 mars
 1. Réaliser un collage d'images / photos avec plusieurs images dont une au moins est en interaction avec la souris ou le son. Bonus s'il y a du son !
-2. Imaginer un système transformant le volume sonore du micro en une image dynamique. Petit truc pour ne pas s'égosiller : jouer un morceau de musique ou des sons pour tester le système.
+~~2. Imaginer un système transformant le volume sonore du micro en une image dynamique. Petit truc pour ne pas s'égosiller : jouer un morceau de musique ou des sons pour tester le système.~~
 
 <a name="cours05" />
 ## Cours #05 — Modéliser — 4 mars
