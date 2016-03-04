@@ -9,7 +9,7 @@ Design interactif — ECV Bordeaux — 2016
 * [Cours #02 — Animer et montrer — 29 janvier](#cours02)
 * [Cours #03 — Mémoriser — 5 février](#cours03)
 * [Cours #04 — Onduler et charger — 12 février](#cours04)
-* [Cours #05 — Modéliser — 4 mars](#cours04)
+* [Cours #05 — Contrôler et modéliser — 4 mars](#cours05)
 * [Méthodologie](#methodo)
 
 ### Rendus
@@ -105,14 +105,13 @@ http://www.v3ga.net/~ecv/2016/rendus/
 ~~2. Imaginer un système transformant le volume sonore du micro en une image dynamique. Petit truc pour ne pas s'égosiller : jouer un morceau de musique ou des sons pour tester le système.~~
 
 <a name="cours05" />
-## Cours #05 — Modéliser — 4 mars
-* Définir ses propres fonctions : mot clé **function**
-* Structure de contrôle **if**
-* Utiliser des variables pour modéliser les propriétés d'un objet. Utilisation de la structure de contrôle **if** pour limiter l'objet sur l'écran.
-* Gestion d'une collection d'objets, modélisation d'un système de particules.
+## Cours #05 — Contrôler et modéliser — 4 mars
+* Modélisation d'une particule simple: position, vitesse, accélération.
+* Structure de contrôle **if** : exécuter ou non un bloc de commandes sous certaines conditions. Application aux contraintes de déplacement d'une particule.
+* Structure de contrôle **for** : répéter l'éxécution d'un bloc de commandes. Application à la structure de grille.
 * Démarrage du projet, discussion, idées.
 
-#### Exercice 
+#### Exercice — à rendre pour le jeudi 10 mars. 
 
 
 
