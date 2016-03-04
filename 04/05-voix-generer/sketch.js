@@ -24,7 +24,7 @@ function mousePressed()
 {
 	voix.setLang("fr-FR");
 	voix.stop();
-	voix.speak("Salut ça va aujourd'hui c'est le cours numéro quatre de design interactif");
+	voix.speak("Salut, ça va ? C'est le cours numéro vingt quatre de design interactif");
 }
 
 // --------------------------------------
