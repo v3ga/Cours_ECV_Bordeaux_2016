@@ -111,8 +111,8 @@ http://www.v3ga.net/~ecv/2016/rendus/
 * Structure de contrôle **for** : répéter l'éxécution d'un bloc de commandes. Application à la structure de grille.
 * Démarrage du projet, discussion, idées.
 
-#### Exercice — à rendre pour le jeudi 10 mars. 
-
+#### Exercice — à rendre pour le vendredi 11 mars. 
+1. Reprendre le sketch de grille (boucle for) et le personnaliser en jouant sur le motif qui devra être interactif. Exporter une série d'images et les insérer dans la page de sketch à mettre sur le FTP.
 
 
 <a name="methodo" />
