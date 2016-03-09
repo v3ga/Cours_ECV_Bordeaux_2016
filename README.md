@@ -10,6 +10,7 @@ Design interactif — ECV Bordeaux — 2016
 * [Cours #03 — Mémoriser — 5 février](#cours03)
 * [Cours #04 — Onduler et charger — 12 février](#cours04)
 * [Cours #05 — Contrôler et modéliser — 4 mars](#cours05)
+* [Cours #06 — Collectionner — 11 mars](#cours06)
 * [Méthodologie](#methodo)
 
 ### Rendus
@@ -114,6 +115,11 @@ http://www.v3ga.net/~ecv/2016/rendus/
 #### Exercice — à rendre pour le vendredi 11 mars. 
 1. Reprendre le sketch de grille (boucle for) et le personnaliser en jouant sur le motif qui devra être interactif. Exporter une série d'images et les insérer dans la page de sketch à mettre sur le FTP.
 
+<a name="cours06" />
+## Cours #06 — Collectionner — 11 mars
+* Les tableaux, gestion d'une collection d'objets.
+* Application à la modélisation d'un système de particules.
+* Récupération d'un tableau de points pour un glype d'une fonte.
 
 <a name="methodo" />
 ## Méthodologie de travail
