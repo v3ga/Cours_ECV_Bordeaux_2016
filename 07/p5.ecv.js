@@ -1,3 +1,16 @@
+/*
+function drawGlyphMetrics(p5Canvas,font,c,x,y,size)
+{
+	glyph.drawMetrics(p5Canvas.canvas.getContext("2d"),x,y,size);
+}
+*/
+
+function drawTextMetrics(p5Canvas,font,txt,x,y,size)
+{
+	font.font.drawMetrics(p5Canvas.canvas.getContext("2d"),txt,x,y,size);
+}
+
+
 function sampleText(font,txt,step,x,y,size)
 {
 	var path = font.font.getPath(txt,x,y,size);
