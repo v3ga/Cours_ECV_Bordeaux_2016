@@ -141,6 +141,7 @@ http://www.v3ga.net/~ecv/2016/rendus/
 
 
 ### Liens
+* [Code & Type] (http://code-type.com/about/) 
 * Mark Webster — [Generative typography](https://www.flickr.com/photos/tisane_01/albums/72157630223571120) 
 * [generative-typografie.de](http://generative-typografie.de/)
 * [opentype.js](https://nodebox.github.io/opentype.js/)
