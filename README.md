@@ -127,16 +127,25 @@ http://www.v3ga.net/~ecv/2016/rendus/
 ## Cours #06 — Collectionner — 11 mars
 * Les tableaux, gestion d'une collection d'objets.
 * Application à la modélisation d'un système de particules.
-* Récupération d'un tableau de points pour un glype d'une fonte.
 
 <a name="cours07" />
 ## Cours #07 — Écouter et parler — 18 mars
-* captation du volume sonore via [p5.sound.js](http://p5js.org/reference/#/libraries/p5.sound)
+* captation du volume sonore via [p5.sound.js](http://p5js.org/reference/#/libraries/p5.sound) (sketch *01-micro*)
 * reconnaissance vocale via [p5.speech.js](http://abilitylab.nyu.edu/p5.js-speech/)
 * analayse d'une chaîne de caractère (méthode [split](http://p5js.org/reference/#/p5/split)), création d'un automate qui réagit à la voix (sketch *02-voix*)
 
 <a name="cours08" />
 ## Cours #08 — Générer — 25 mars
+* Récupération d'un tableau de points pour un glype d'une fonte.
+* Projet de typographie générative
+
+
+### Liens
+* Mark Webster — [Generative typography](https://www.flickr.com/photos/tisane_01/albums/72157630223571120) 
+* [generative-typografie.de](http://generative-typografie.de/)
+* [opentype.js](https://nodebox.github.io/opentype.js/)
+* [Prototypo](https://www.prototypo.io/)
+* Richard Marxer — [Caligraft](http://www.caligraft.com/)
 
 <a name="methodo" />
 ## Méthodologie de travail
