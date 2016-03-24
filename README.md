@@ -132,7 +132,8 @@ http://www.v3ga.net/~ecv/2016/rendus/
 <a name="cours07" />
 ## Cours #07 — Écouter et parler — 18 mars
 * captation du volume sonore via [p5.sound.js](http://p5js.org/reference/#/libraries/p5.sound)
-* reconnaissance et génération vocale via [p5.speech.js](http://abilitylab.nyu.edu/p5.js-speech/)
+* reconnaissance vocale via [p5.speech.js](http://abilitylab.nyu.edu/p5.js-speech/)
+* analayse d'une chaîne de caractère (méthode [split](http://p5js.org/reference/#/p5/split)), création d'un automate qui réagit à la voix (sketch *02-voix*)
 
 <a name="cours08" />
 ## Cours #08 — Générer — 25 mars
