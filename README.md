@@ -11,6 +11,8 @@ Design interactif — ECV Bordeaux — 2016
 * [Cours #04 — Onduler et charger — 12 février](#cours04)
 * [Cours #05 — Contrôler et modéliser — 4 mars](#cours05)
 * [Cours #06 — Collectionner — 11 mars](#cours06)
+* [Cours #07 — Écouter et parler — 18 mars](#cours07)
+* [Cours #08 — Générer — 25 mars](#cours08)
 * [Méthodologie](#methodo)
 
 ### Rendus
@@ -111,6 +113,12 @@ http://www.v3ga.net/~ecv/2016/rendus/
 * Structure de contrôle **if** : exécuter ou non un bloc de commandes sous certaines conditions. Application aux contraintes de déplacement d'une particule.
 * Structure de contrôle **for** : répéter l'éxécution d'un bloc de commandes. Application à la structure de grille.
 * Démarrage du projet, discussion, idées.
+ 
+#### Liens
+* Floss manual — [Les conditions / structure if](http://fr.flossmanuals.net/processing/les-conditions/)
+* Daniel Shiffman — [Boolean expressions](https://www.youtube.com/watch?v=wsI6N9hfW7E&list=PLRqwX-V7Uu6YqykuLs00261JCqnL_NNZ_)
+* Floss manual — [Les boucles / structure for](http://fr.flossmanuals.net/processing/les-repetitions/)
+* Daniel Shiffman — [The for loop](https://www.youtube.com/watch?v=h4ApLHe8tbk)
 
 #### Exercice — à rendre pour le vendredi 11 mars. 
 1. Reprendre le sketch de grille (boucle for) et le personnaliser en jouant sur le motif qui devra être interactif. Exporter une série d'images et les insérer dans la page de sketch à mettre sur le FTP.
@@ -120,6 +128,14 @@ http://www.v3ga.net/~ecv/2016/rendus/
 * Les tableaux, gestion d'une collection d'objets.
 * Application à la modélisation d'un système de particules.
 * Récupération d'un tableau de points pour un glype d'une fonte.
+
+<a name="cours07" />
+## Cours #07 — Écouter et parler — 18 mars
+* captation du volume sonore via [p5.sound.js](http://p5js.org/reference/#/libraries/p5.sound)
+* reconnaissance et génération vocale via [p5.speech.js](http://abilitylab.nyu.edu/p5.js-speech/)
+
+<a name="cours08" />
+## Cours #08 — Générer — 25 mars
 
 <a name="methodo" />
 ## Méthodologie de travail
