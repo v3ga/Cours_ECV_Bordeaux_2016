@@ -29,13 +29,31 @@ function samplePath(path,step)
 	var nb = path.commands.length;
 	var c1;
 	var points = Array();
+	var cprev;
+
+	var cfirst = path.commands[0];
+	console.log( path.commands );
 
 	for (var i=0; i<nb ; i++)
 	{
 		c1 = path.commands[i];
-		if (c1.type=="M"){
+		if (c1.type=="Z")
+		{
+			//points = concat(points,sampleCurve(step,cprev.x,cprev.y,cfirst.x,cfirst.y));
+
+			console.log( c1 );
+			console.log( cprev );
+			console.log( cfirst );
+			console.log( "---" );
+
+			cfirst = cprev;
+		}
+		else if (c1.type=="M")
+		{
 			x = c1.x;
 			y = c1.y;
+
+			cprev = c1;
 		}
 		else if (c1.type=="L")
 		{
@@ -45,6 +63,7 @@ function samplePath(path,step)
 			x = c1.x;
 			y = c1.y;
 
+			cprev = c1;
 		}
  		else if (c1.type=="Q") // Quadratic
  		{
@@ -57,6 +76,8 @@ function samplePath(path,step)
 
 			x = c1.x;
 			y = c1.y;
+
+			cprev = c1;
  		}
  		else if (c1.type=="C") // Cubic
  		{
@@ -66,7 +87,10 @@ function samplePath(path,step)
 
 			x = c1.x;
 			y = c1.y;
+
+			cprev = c1;
 		}
+
 	}
 	return points;
 }
