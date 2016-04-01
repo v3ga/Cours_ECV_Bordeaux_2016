@@ -1,8 +1,8 @@
 /*!!
- *  p5.svg v0.3.0
+ *  p5.svg v0.6.0.0
  *  SVG Runtime for p5.js.
  *
- *  Copyright (C) 2015 Zeno Zeng
+ *  Copyright (C) 2015-2016 Zeno Zeng
  *  Licensed under the LGPL license.
  */
 (function (root, factory) {
@@ -20,9 +20,6 @@
 })(this, function (p5) {
 
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-require('../src/index.js')(p5);
-
-},{"../src/index.js":6}],2:[function(require,module,exports){
 /*!!
  *  Canvas 2 Svg v1.0.9
  *  A low level canvas to SVG converter. Uses a mock canvas context to build an SVG document.
@@ -1131,7 +1128,7 @@ require('../src/index.js')(p5);
 
 }());
 
-},{}],3:[function(require,module,exports){
+},{}],2:[function(require,module,exports){
 var C2S = require('./canvas2svg');
 
 var Context = function(width, height, options) {
@@ -1267,8 +1264,9 @@ Context.prototype.__gc = function() {
                 lastCount = count;
                 elements = elements.filter(function(elem) {
                     // in case children may from live generation, gc from bottom to top
-                    if (elem.children.length === 0) {
-                        elem.remove();
+                    var children = elem.children || elem.childNodes; // childNodes for IE
+                    if (children.length === 0) {
+                        elem.parentNode.removeChild(elem);
                         return false;
                     } else {
                         return true;
@@ -1290,20 +1288,28 @@ Context.prototype.__gc = function() {
     }, 0);
 };
 
+/**
+ * Clear full canvas and do gc
+ * @private
+ */
+Context.prototype.__clearCanvas = function() {
+    // remove all
+    this.generations.forEach(function(elems) {
+        elems.forEach(function(elem) {
+            if (elem) {
+                elem.parentNode.removeChild(elem);
+            }
+        });
+    });
+    this.generations = [[]];
+    var g = this.__createElement('g');
+    this.__root.appendChild(g);
+    this.__currentElement = g;
+};
+
 Context.prototype.clearRect = function(x, y, w, h) {
     if (x === 0 && y === 0 && w === this.__width && h === this.__height) {
-        // remove all
-        this.generations.forEach(function(elems) {
-            elems.forEach(function(elem) {
-                if (elem) {
-                    elem.remove();
-                }
-            });
-        });
-        this.generations = [[]];
-        var g = this.__createElement('g');
-        this.__root.appendChild(g);
-        this.__currentElement = g;
+        this.__clearCanvas();
     } else {
         C2S.prototype.clearRect.call(this, x, y, w, h);
     }
@@ -1340,22 +1346,11 @@ Context.prototype.drawImage = function() {
     parent.appendChild(image);
 };
 
-// /**
-//  *  scales the current element
-//  */
-// Context.prototype.scale = function(x, y) {
-//     if(y === undefined) {
-//         y = x;
-//     }
-//     console.log('scale', x, y);
-//     // this.__addTransform(["scale(", x, ",", y, ")"].join(''));
-// };
-
-
+Context.prototype.getSerializedSvg = null;
 
 module.exports = Context;
 
-},{"./canvas2svg":2}],4:[function(require,module,exports){
+},{"./canvas2svg":1}],3:[function(require,module,exports){
 var Context = require('./context');
 
 function SVGCanvas(options) {
@@ -1429,13 +1424,29 @@ SVGCanvas.prototype.getContext = function(type) {
 
 // you should always use URL.revokeObjectURL after your work done
 SVGCanvas.prototype.toObjectURL = function() {
-    var data = this.getContext('2d').getSerializedSvg();
+    var data = new XMLSerializer().serializeToString(this.svg);
     var svg = new Blob([data], {type: 'image/svg+xml;charset=utf-8'});
     return URL.createObjectURL(svg);
 };
 
 SVGCanvas.prototype.toDataURL = function(type, options) {
-    var SVGDataURL = "data:image/svg+xml;charset=utf-8," + encodeURI(this.getContext('2d').getSerializedSvg());
+    var xml = new XMLSerializer().serializeToString(this.svg);
+
+    // documentMode is an IE-only property
+    // http://msdn.microsoft.com/en-us/library/ie/cc196988(v=vs.85).aspx
+    // http://stackoverflow.com/questions/10964966/detect-ie-version-prior-to-v9-in-javascript
+    var isIE = document.documentMode;
+
+    if (isIE) {
+        // This is patch from canvas2svg
+        // IE search for a duplicate xmnls because they didn't implement setAttributeNS correctly
+        var xmlns = /xmlns="http:\/\/www\.w3\.org\/2000\/svg".+xmlns="http:\/\/www\.w3\.org\/2000\/svg/gi;
+        if(xmlns.test(xml)) {
+            xml = xml.replace('xmlns="http://www.w3.org/2000/svg','xmlns:xlink="http://www.w3.org/1999/xlink');
+        }
+    }
+
+    var SVGDataURL = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(xml);
     if (type === "image/svg+xml" || !type) {
         return SVGDataURL;
     }
@@ -1459,6 +1470,10 @@ SVGCanvas.prototype.toDataURL = function(type, options) {
     throw new Error('Unknown type for SVGCanvas.prototype.toDataURL, please use image/jpeg | image/png | image/svg+xml.');
 };
 
+SVGCanvas.prototype.addEventListener = function() {
+    return this.svg.addEventListener.apply(this, arguments);
+};
+
 // will return wrapper element: <div><svg></svg></div>
 SVGCanvas.prototype.getElement = function() {
     return this.wrapper;
@@ -1466,18 +1481,302 @@ SVGCanvas.prototype.getElement = function() {
 
 module.exports = SVGCanvas;
 
-},{"./context":3}],5:[function(require,module,exports){
+},{"./context":2}],4:[function(require,module,exports){
 var constants = {
     SVG: 'svg'
 };
 
 module.exports = constants;
 
-},{}],6:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 module.exports = function(p5) {
+    /**
+     * Returns an Array of SVGElements of current SVG Graphics matching given selector
+     *
+     * @function querySVG
+     * @memberof p5.prototype
+     * @param {String} selector CSS selector for query
+     * @returns {SVGElement[]}
+     */
+    p5.prototype.querySVG = function(selector) {
+        var svg = this._renderer && this._renderer.svg;
+        if (!svg) {
+            return null;
+        }
+        return p5.SVGElement.prototype.query.call({elt: svg}, selector);
+    };
+
+    /**
+     * @namespace SVGElement
+     * @constructor
+     * @param {Element} element
+     */
+    function SVGElement(element) {
+        if (!element) {
+            return null;
+        }
+        return p5.Element.apply(this, arguments);
+    }
+
+    SVGElement.prototype = Object.create(p5.Element.prototype);
+
+    /**
+     * Returns an Array of children of current SVG Element matching given selector
+     *
+     * @function query
+     * @memberof SVGElement.prototype
+     * @param {String} selector CSS selector for query
+     * @returns {SVGElement[]}
+     */
+    SVGElement.prototype.query = function(selector) {
+        var elements = this.elt.querySelectorAll(selector);
+        var objects = [];
+        for (var i = 0; i < elements.length; i++) {
+            objects[i] = new SVGElement(elements[i]);
+        }
+        return objects;
+    };
+
+    /**
+     * Append a new child to current element.
+     *
+     * @function append
+     * @memberof SVGElement.prototype
+     * @param {SVGElement|Element} element
+     */
+    SVGElement.prototype.append = function(element) {
+        var elt = element.elt || element;
+        this.elt.appendChild(elt);
+        return this;
+    };
+
+    /**
+     * Apply different attribute operation based on arguments.length
+     * <ul>
+     *     <li>setAttribute(name, value)</li>
+     *     <li>setAttributeNS(namespace, name, value)</li>
+     *     <li>getAttribute(name)</li>
+     * </ul>
+     *
+     * @function attribute
+     * @memberof SVGElement.prototype
+     */
+    SVGElement.prototype.attribute = function() {
+        var args = arguments;
+        if (args.length === 3) {
+            this.elt.setAttributeNS.apply(this.elt, args);
+        }
+        if (args.length === 2) {
+            this.elt.setAttribute.apply(this.elt, args);
+        }
+        if (args.length === 1) {
+            return this.elt.getAttribute.apply(this.elt, args);
+        }
+        return this;
+    };
+
+    /**
+     * Apply filter on current element.
+     * If called multiple times,
+     * these filters will be chained together and combine to a bigger SVG filter.
+     *
+     * @function filter
+     * @memberof SVGElement.prototype
+     * @param {String} filter BLUR, GRAY, INVERT, THRESHOLD, OPAQUE, ERODE, DILATE (defined in p5's constants)
+     * @param {Any} argument Argument for that filter
+     */
+    SVGElement.prototype.filter = function(filter, arg) {
+        p5.SVGFilters.apply(this, filter, arg);
+        return this;
+    };
+
+    /**
+     * Remove applied filter on current element
+     * After called, rest filters will be chained together
+     * and combine to a new SVG filter.
+     *
+     * @function unfilter
+     * @memberof SVGElement.prototype
+     * @param {String} filter BLUR, GRAY, INVERT, THRESHOLD, OPAQUE, ERODE, DILATE (defined in p5's constants)
+     * @param {Any} argument Argument for that filter
+     */
+    SVGElement.prototype.unfilter = function(filterName, arg) {
+        var filters = this.attribute('data-p5-svg-filters') || '[]';
+        filters = JSON.parse(filters);
+        if (arg === undefined) {
+            arg = null;
+        }
+        var found = false;
+        filters = filters.reverse().filter(function(filter) {
+            if ((filter[0] === filterName) && (filter[1] === arg) && !found) {
+                found = true;
+                return false;
+            }
+            return true;
+        }).reverse();
+        this.attribute('data-p5-svg-filters', JSON.stringify(filters));
+        p5.SVGFilters.apply(this, null);
+        return this;
+    };
+
+    /**
+     * Create SVGElement
+     *
+     * @function create
+     * @memberof SVGElement
+     * @param {String} nodeName
+     * @param {Object} [attributes] Attributes for the element
+     * @return {SVGElement}
+     */
+    SVGElement.create = function(nodeName, attributes) {
+        attributes = attributes || {};
+        var elt = document.createElementNS('http://www.w3.org/2000/svg', nodeName);
+        Object.keys(attributes).forEach(function(k) {
+            elt.setAttribute(k, attributes[k]);
+        });
+        return new SVGElement(elt);
+    };
+
+    /**
+     * Tell if current element matching given selector.
+     * This is polyfill from MDN.
+     *
+     * @see https://developer.mozilla.org/en-US/docs/Web/API/Element/matches
+     *
+     * @function matches
+     * @memberof SVGElement.prototype
+     * @param {String} selector CSS Selector
+     * @return {Bool}
+     */
+    SVGElement.prototype.matches = function(selector) {
+        var element = this.elt;
+        var matches = (element.document || element.ownerDocument).querySelectorAll(selector);
+        var i = 0;
+        while (matches[i] && matches[i] !== element) {
+            i++;
+        }
+        return matches[i] ? true : false;
+    };
+
+    /**
+     * Get defs element, or create one if not exists
+     *
+     * @private
+     */
+    SVGElement.prototype._getDefs = function() {
+        var svg = this.parentNode('svg');
+        var defs = svg.query('defs');
+        if (defs[0]) {
+            defs = defs[0];
+        } else {
+            defs = SVGElement.create('defs');
+            svg.append(defs);
+        }
+        return defs;
+    };
+
+    /**
+     * Get parentNode.
+     * If selector not given, returns parentNode.
+     * Otherwise, will look up all ancestors,
+     * and return closest element matching given selector,
+     * or return null if not found.
+     *
+     * @function parentNode
+     * @memberof SVGElement.prototype
+     * @param {String} [selector] CSS Selector
+     * @return {SVGElement}
+     */
+    SVGElement.prototype.parentNode = function(selector) {
+        if (!selector) {
+            return new SVGElement(this.elt.parentNode);
+        }
+        var elt = this;
+        while (elt) {
+            elt = this.parentNode();
+            if (elt && elt.matches(selector)) {
+                return elt;
+            }
+        }
+        return null;
+    };
+
+    p5.SVGElement = SVGElement;
+};
+
+},{}],6:[function(require,module,exports){
+// SVG Filter
+
+module.exports = function(p5) {
+    var _filter = p5.prototype.filter;
+
+    var SVGFilters = require('./p5.SVGFilters')(p5);
+
+    /**
+     * Register a custom SVG Filter
+     *
+     * @function registerSVGFilter
+     * @memberof p5.prototype
+     * @param {String} name Name for Custom SVG filter
+     * @param {Function} filterFunction filterFunction(inGraphicsName, resultGraphicsName, value)
+     *                                  should return SVGElement or Array of SVGElement.
+     * @example
+     * registerSVGFilter('myblur', function(inGraphicsName, resultGraphicsName, value) {
+     *     return SVGElement.create('feGaussianBlur', {
+     *         stdDeviation: val,
+     *         in: inGraphics,
+     *         result: resultGraphics,
+     *         'color-interpolation-filters': 'sRGB'
+     *     });
+     * });
+     * filter('myblur', 5);
+     */
+    p5.prototype.registerSVGFilter = function(name, fn) {
+        SVGFilters[name] = fn;
+    };
+
+    p5.prototype.filter = function(operation, value) {
+        var svg = this._renderer.svg;
+        if (svg) {
+            // move nodes to a new <g>
+            var nodes = svg.children || svg.childNodes; // childNodes is for IE
+            var g = p5.SVGElement.create('g');
+            this._renderer._setGCFlag(g.elt);
+            svg.appendChild(g.elt);
+            // convert nodeList to array and use forEach
+            // instead of using for loop,
+            // which is buggy due to the length changed during append
+            nodes = Array.prototype.slice.call(nodes);
+            nodes.forEach(function(node) {
+                if (node !== g.elt && (node.nodeName.toLowerCase() !== 'defs')) {
+                    g.elt.appendChild(node);
+                }
+            });
+
+            // apply filter
+            g.filter(operation, value);
+
+            // create new <g> so that new element won't be influenced by the filter
+            g = p5.SVGElement.create('g');
+            this._renderer._setGCFlag(g.elt);
+            this._renderer.svg.appendChild(g.elt);
+            this._renderer.drawingContext.__currentElement = g.elt;
+        } else {
+            _filter.apply(this, arguments);
+        }
+    };
+};
+
+},{"./p5.SVGFilters":10}],7:[function(require,module,exports){
+module.exports = function(p5) {
+    /**
+     * @namespace p5
+     */
     require('./p5.RendererSVG')(p5);
     require('./rendering')(p5);
     require('./io')(p5);
+    require('./element')(p5);
+    require('./filters')(p5);
 
     // attach constants to p5 instance
     var constants = require('./constants');
@@ -1486,7 +1785,7 @@ module.exports = function(p5) {
     });
 };
 
-},{"./constants":5,"./io":7,"./p5.RendererSVG":8,"./rendering":9}],7:[function(require,module,exports){
+},{"./constants":4,"./element":5,"./filters":6,"./io":8,"./p5.RendererSVG":9,"./rendering":11}],8:[function(require,module,exports){
 module.exports = function(p5) {
     /**
      * Convert SVG Element to jpeg / png data url
@@ -1498,7 +1797,7 @@ module.exports = function(p5) {
      */
     var svg2img = function(svg, mine, callback) {
         svg = (new XMLSerializer()).serializeToString(svg);
-        svg = "data:image/svg+xml;charset=utf-8," + encodeURI(svg);
+        svg = 'data:image/svg+xml;charset=utf-8,' + encodeURI(svg);
         if (mine == 'image/svg+xml') {
             callback(null, svg);
             return;
@@ -1545,7 +1844,7 @@ module.exports = function(p5) {
             throw new Error('Fail to getFrame, invalid extension: ' + ext + ', please use png | jpeg | jpg | svg.');
         }
 
-        var svg = options.svg || this._graphics.svg;
+        var svg = options.svg || this._renderer.svg;
         svg2img(svg, mine, function(err, dataURL) {
             var downloadMime = 'image/octet-stream';
             dataURL = dataURL.replace(mine, downloadMime);
@@ -1563,10 +1862,11 @@ module.exports = function(p5) {
      * filename on save-as. Other browsers will either save the
      * file immediately, or prompt the user with a dialogue window.
      *
-     * @method saveSVG
-     * @param {Graphics|SVGElement} svg Source to save (optional)
-     * @param {String} filename
-     * @param {String} extension Extension: 'svg' or 'jpg' or 'jpeg' or 'png' (optional)
+     * @function saveSVG
+     * @memberof p5.prototype
+     * @param {Graphics|Element|SVGElement} [svg] Source to save
+     * @param {String} [filename]
+     * @param {String} [extension] Extension: 'svg' or 'jpg' or 'jpeg' or 'png'
      */
     p5.prototype.saveSVG = function() {
         // don't use slice on arguments because it prevents optimizations
@@ -1576,11 +1876,16 @@ module.exports = function(p5) {
         var svg;
 
         if (args[0] instanceof p5.Graphics) {
-            svg = args[0]._graphics.svg;
+            svg = args[0]._renderer.svg;
             args.shift();
         }
 
-        if (typeof args[0] == "object") {
+        if (args[0] && args[0].elt) {
+            svg = args[0].elt;
+            args.shift();
+        }
+
+        if (typeof args[0] == 'object') {
             svg = args[0];
             args.shift();
         }
@@ -1602,18 +1907,19 @@ module.exports = function(p5) {
     /**
      * Extends p5's saveFrames with SVG support
      *
-     * @method saveFrames
+     * @function saveFrames
+     * @memberof p5.prototype
      * @param {String} filename filename
      * @param {String} extension Extension: 'svg' or 'jpg' or 'jpeg' or 'png'
      * @param {Number} duration duration
-     * @param {Number]} fps fps
+     * @param {Number} fps fps
      * @param {Function} callback callback
      */
     var _saveFrames = p5.prototype.saveFrames;
     p5.prototype.saveFrames = function(filename, extension, duration, fps, callback) {
         var args = arguments;
 
-        if (!this._graphics.svg) {
+        if (!this._renderer.svg) {
             _saveFrames.apply(this, args);
             return;
         }
@@ -1669,9 +1975,10 @@ module.exports = function(p5) {
     /**
      * Extends p5's save method with SVG support
      *
-     * @method save
-     * @param {Graphics|SVGElement} source Source to save (optional)
-     * @param {String} filename filename
+     * @function save
+     * @memberof p5.prototype
+     * @param {Graphics|Element|SVGElement} [source] Source to save
+     * @param {String} [filename] filename
      */
     var _save = p5.prototype.save;
     p5.prototype.save = function() {
@@ -1686,12 +1993,17 @@ module.exports = function(p5) {
             args.shift();
         }
 
-        if (typeof args[0] == "object") {
+        if (args[0] && args[0].elt) {
+            svg = args[0].elt;
+            args.shift();
+        }
+
+        if (typeof args[0] == 'object') {
             svg = args[0];
             args.shift();
         }
 
-        svg = svg || (this._graphics && this._graphics.svg);
+        svg = svg || (this._renderer && this._renderer.svg);
 
         var filename = args[0];
         var supportedExtensions = ['jpeg', 'png', 'jpg', 'svg', ''];
@@ -1705,12 +2017,80 @@ module.exports = function(p5) {
             return _save.apply(this, arguments);
         }
     };
+
+    /**
+     * Custom get in p5.svg (handles http and dataurl)
+     * @private
+     */
+    p5.prototype._svg_get = function(path, successCallback, failureCallback) {
+        if (path.indexOf('data:') === 0) {
+            if (path.indexOf(',') === -1) {
+                failureCallback(new Error('Fail to parse dataurl: ' + path));
+                return;
+            }
+            var svg = path.split(',').pop();
+            // force request to dataurl to be async
+            // so that it won't make preload mess
+            setTimeout(function() {
+                if (path.indexOf(';base64,') > -1) {
+                    svg = atob(svg);
+                } else {
+                    svg = decodeURIComponent(svg);
+                }
+                successCallback(svg);
+            }, 1);
+            return svg;
+        } else {
+            this.httpGet(path, successCallback);
+            return null;
+        }
+    };
+
+    /**
+     * loadSVG (like loadImage, but will return SVGElement)
+     *
+     * @function loadSVG
+     * @memberof p5.prototype
+     * @returns {p5.SVGElement}
+     */
+    p5.prototype.loadSVG = function(path, successCallback, failureCallback) {
+        var div = document.createElement('div');
+        var element = new p5.SVGElement(div);
+        this._svg_get(path, function(svg) {
+            div.innerHTML = svg;
+            svg = div.querySelector('svg');
+            if (!svg) {
+                if (failureCallback) {
+                    failureCallback(new Error('Fail to create <svg>.'));
+                }
+                return;
+            }
+            element.elt = svg;
+            if (successCallback) {
+                successCallback(element);
+            }
+        }, failureCallback);
+        return element;
+    };
+    // cause preload to wait
+    p5.prototype._preloadMethods.loadSVG = p5.prototype;
+
+    p5.prototype.getDataURL = function() {
+        return this._renderer.elt.toDataURL('image/svg+xml');
+    };
 };
 
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 var SVGCanvas = require('svgcanvas');
 
 module.exports = function(p5) {
+    /**
+     * @namespace RendererSVG
+     * @constructor
+     * @param {Element} elt canvas element to be replaced
+     * @param {p5} pInst p5 Instance
+     * @param {Bool} isMainCanvas
+     */
     function RendererSVG(elt, pInst, isMainCanvas) {
         var svgCanvas = new SVGCanvas();
         var svg = svgCanvas.svg;
@@ -1749,7 +2129,25 @@ module.exports = function(p5) {
         this.drawingContext.lineWidth = 1;
     };
 
+    RendererSVG.prototype.line = function(x1, y1, x2, y2) {
+        var styleEmpty = 'rgba(0,0,0,0)';
+        var ctx = this.drawingContext;
+        if (!this._doStroke) {
+            return this;
+        } else if(ctx.strokeStyle === styleEmpty){
+            return this;
+        }
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.stroke();
+        return this;
+    };
+
     RendererSVG.prototype.resize = function(w, h) {
+
+        // console.log({w: w, h: h, tw: this.width, th: this.height});
+
         if (!w || !h) {
             // ignore invalid values for width and height
             return;
@@ -1758,24 +2156,24 @@ module.exports = function(p5) {
             // canvas will be cleared if its size changed
             // so, we do same thing for SVG
             // note that at first this.width and this.height is undefined
-            // so, also check that
-            if (this.width && this.height) {
-                this.drawingContext.clearRect(0, 0, this.width, this.height);
-            }
+            this.drawingContext.__clearCanvas();
         }
         this._withPixelDensity(function() {
             p5.Renderer2D.prototype.resize.call(this, w, h);
         });
         // For scale, crop
         // see also: http://sarasoueidan.com/blog/svg-coordinate-systems/
-        this.svg.setAttribute("viewBox", [0, 0, w, h].join(' '));
+        this.svg.setAttribute('viewBox', [0, 0, w, h].join(' '));
     };
 
+    /**
+     * @private
+     */
     RendererSVG.prototype._withPixelDensity = function(fn) {
-        var pixelDensity = this._pInst.pixelDensity;
-        this._pInst.pixelDensity = 1; // 1 is OK for SVG
+        var pixelDensity = this._pInst._pixelDensity;
+        this._pInst._pixelDensity = 1; // 1 is OK for SVG
         fn.apply(this);
-        this._pInst.pixelDensity = pixelDensity;
+        this._pInst._pixelDensity = pixelDensity;
     };
 
     RendererSVG.prototype.background = function() {
@@ -1791,13 +2189,315 @@ module.exports = function(p5) {
         });
     };
 
+    /**
+     * set gc flag for svgcanvas
+     *
+     * @private
+     */
+    RendererSVG.prototype._setGCFlag = function(element) {
+        var that = this.drawingContext;
+        var currentGeneration = that.generations[that.generations.length - 1];
+        currentGeneration.push(element);
+    };
+
+    /**
+     * Append a element to current SVG Graphics
+     *
+     * @function appendChild
+     * @memberof RendererSVG.prototype
+     * @param {SVGElement|Element} element
+     */
+    RendererSVG.prototype.appendChild = function(element) {
+        if (element && element.elt) {
+            element = element.elt;
+        }
+        this._setGCFlag(element);
+        var g = this.drawingContext.__closestGroupOrSvg();
+        g.appendChild(element);
+    };
+
+    /**
+     * Draw an image or SVG to current SVG Graphics
+     *
+     * FIXME: sx, sy, sWidth, sHeight
+     *
+     * @function image
+     * @memberof RendererSVG.prototype
+     * @param {p5.Graphics|SVGGraphics|SVGElement|Element} image
+     * @param {Number} x
+     * @param {Number} y
+     * @param {Number} width
+     * @param {Number} height
+     */
+    RendererSVG.prototype.image = function(img,  sx, sy, sWidth, sHeight, x, y, w, h) {
+        if (!img) {
+            throw new Error('Invalid image: ' + img);
+        }
+        var elt = img._renderer && img._renderer.svg; // handle SVG Graphics
+        elt = elt || (img.elt && img.elt.nodeName && (img.elt.nodeName.toLowerCase() === 'svg') && img.elt); // SVGElement
+        elt = elt || (img.nodeName && (img.nodeName.toLowerCase() == 'svg') && img); // <svg>
+        if (elt) {
+            // it's <svg> element, let's handle it
+            elt = elt.cloneNode(true);
+            elt.setAttribute('width', w);
+            elt.setAttribute('height', h);
+            elt.setAttribute('x', x);
+            elt.setAttribute('y', y);
+            this.appendChild(elt);
+        } else {
+            p5.Renderer2D.prototype.image.apply(this, arguments);
+        }
+    };
+
     p5.RendererSVG = RendererSVG;
 };
 
+},{"svgcanvas":3}],10:[function(require,module,exports){
+module.exports = function(p5) {
+    var SVGFilters = function() {};
 
+    var SVGElement = p5.SVGElement;
 
-},{"svgcanvas":4}],9:[function(require,module,exports){
+    var generateID = function() {
+        return Date.now().toString() + Math.random().toString().replace(/0\./, '');
+    };
+
+    // @private
+    // We have to build a filter for each element
+    // the `filter: f1 f2` and svg param is not supported by many browsers
+    // so we can just modify the filter def to do so
+    SVGFilters.apply = function(svgElement, func, arg) {
+        // get filters
+        var filters = svgElement.attribute('data-p5-svg-filters') || '[]';
+        filters = JSON.parse(filters);
+        if (func) {
+            filters.push([func, arg]);
+        }
+        svgElement.attribute('data-p5-svg-filters', JSON.stringify(filters));
+
+        if (filters.length === 0) {
+            svgElement.attribute('filter', null);
+            return;
+        }
+
+        // generate filters chain
+        filters = filters.map(function(filter, index) {
+            var inGraphics = index === 0 ? 'SourceGraphic' : ('result-' + (index - 1));
+            var resultGraphics = 'result-' + index;
+            return SVGFilters[filter[0]].call(null, inGraphics, resultGraphics, filter[1]);
+        });
+
+        // get filter id for this element or create one
+        var filterid = svgElement.attribute('data-p5-svg-filter-id');
+        if (!filterid) {
+            filterid = 'p5-svg-' + generateID();
+            svgElement.attribute('data-p5-svg-filter-id', filterid);
+        }
+        // Note that when filters is [], we will remove filter attr
+        // So, here, we write this attr every time
+        svgElement.attribute('filter', 'url(#' + filterid + ')');
+
+        // create <filter>
+        var filter = SVGElement.create('filter', {id: filterid});
+        filters.forEach(function(elt) {
+            if (!Array.isArray(elt)) {
+                elt = [elt];
+            }
+            elt.forEach(function(elt) {
+                filter.append(elt);
+            });
+        });
+
+        // get defs
+        var defs = svgElement._getDefs();
+        var oldfilter = defs.query('#' + filterid)[0];
+        if (!oldfilter) {
+            defs.append(filter);
+        } else {
+            oldfilter.elt.parentNode.replaceChild(filter.elt, oldfilter.elt);
+        }
+    };
+
+    SVGFilters.blur = function(inGraphics, resultGraphics, val) {
+        return SVGElement.create('feGaussianBlur', {
+            stdDeviation: val,
+            in: inGraphics,
+            result: resultGraphics,
+            'color-interpolation-filters': 'sRGB'
+        });
+    };
+
+    // See also: http://www.w3.org/TR/SVG11/filters.html#feColorMatrixElement
+    // See also: http://stackoverflow.com/questions/21977929/match-colors-in-fecolormatrix-filter
+    SVGFilters.colorMatrix = function(inGraphics, resultGraphics, matrix) {
+        return SVGElement.create('feColorMatrix', {
+            type: 'matrix',
+            values: matrix.join(' '),
+            'color-interpolation-filters': 'sRGB',
+            in: inGraphics,
+            result: resultGraphics
+        });
+    };
+
+    // Here we use CIE luminance for RGB
+    SVGFilters.gray = function(inGraphics, resultGraphics) {
+        var matrix = [
+            0.2126, 0.7152, 0.0722, 0, 0, // R'
+            0.2126, 0.7152, 0.0722, 0, 0, // G'
+            0.2126, 0.7152, 0.0722, 0, 0, // B'
+            0, 0, 0, 1, 0 // A'
+        ];
+        return SVGFilters.colorMatrix(inGraphics, resultGraphics, matrix);
+    };
+
+    SVGFilters.threshold = function(inGraphics, resultGraphics, val) {
+        var elements = [];
+        elements.push(SVGFilters.gray(inGraphics, resultGraphics + '-tmp'));
+        var componentTransfer = SVGElement.create('feComponentTransfer', {
+            'in': resultGraphics + '-tmp',
+            result: resultGraphics
+        });
+        var thresh = Math.floor(val * 255);
+        ['R', 'G', 'B'].forEach(function(channel) {
+            // Note that original value is from 0 to 1
+            var func = SVGElement.create('feFunc' + channel, {
+                type: 'linear',
+                slope: 255, // all non-zero * 255
+                intercept: (thresh - 1) * -1
+            });
+            componentTransfer.append(func);
+        });
+        elements.push(componentTransfer);
+        return elements;
+    };
+
+    SVGFilters.invert = function(inGraphics, resultGraphics) {
+        var matrix = [
+            -1, 0, 0, 0, 1,
+            0, -1, 0, 0, 1,
+            0, 0, -1, 0, 1,
+            0, 0, 0, 1, 0
+        ];
+        return SVGFilters.colorMatrix(inGraphics, resultGraphics, matrix);
+    };
+
+    SVGFilters.opaque = function(inGraphics, resultGraphics) {
+        var matrix = [
+            1, 0, 0, 0, 0, // original R
+            0, 1, 0, 0, 0, // original G
+            0, 0, 1, 0, 0, // original B
+            0, 0, 0, 0, 1 // set A to 1
+        ];
+        return SVGFilters.colorMatrix(inGraphics, resultGraphics, matrix);
+    };
+
+    /**
+     * Generate discrete table values based on the given color map function
+     *
+     * @private
+     * @param {Function} fn - Function to map channel values (val ∈ [0, 255])
+     * @see http://www.w3.org/TR/SVG/filters.html#feComponentTransferElement
+     */
+    SVGFilters._discreteTableValues = function(fn) {
+        var table = [];
+        for (var val = 0; val < 256; val++) {
+            var newval = fn(val);
+            table.push(newval / 255); // map to ∈ [0, 1]
+        }
+        return table;
+    };
+
+    /**
+     * Limits each channel of the image to the number of colors specified as
+     * the parameter. The parameter can be set to values between 2 and 255, but
+     * results are most noticeable in the lower ranges.
+     *
+     * Adapted from p5's Filters.posterize
+     */
+    SVGFilters.posterize = function(inGraphics, resultGraphics, level) {
+        level = parseInt(level, 10);
+        if ((level < 2) || (level > 255)) {
+            throw new Error(
+                'Level must be greater than 2 and less than 255 for posterize'
+            );
+        }
+
+        var tableValues = SVGFilters._discreteTableValues(function(val) {
+            return (((val * level) >> 8) * 255) / (level - 1);
+        });
+
+        var componentTransfer = SVGElement.create('feComponentTransfer', {
+            'in': inGraphics,
+            result: resultGraphics,
+            'color-interpolation-filters': 'sRGB'
+        });
+        ['R', 'G', 'B'].forEach(function(channel) {
+            var func = SVGElement.create('feFunc' + channel, {
+                type: 'discrete',
+                tableValues: tableValues.join(' ')
+            });
+            componentTransfer.append(func);
+        });
+
+        return componentTransfer;
+    };
+
+    SVGFilters._blendOffset = function(inGraphics, resultGraphics, mode) {
+        var elements = [];
+        [
+            ['left', -1, 0],
+            ['right', 1, 0],
+            ['up', 0, -1],
+            ['down', 0, 1]
+        ].forEach(function(neighbor) {
+            elements.push(SVGElement.create('feOffset', {
+                'in': inGraphics,
+                result: resultGraphics + '-' + neighbor[0],
+                dx: neighbor[1],
+                dy: neighbor[2]
+            }));
+        });
+        [
+            [null, inGraphics],
+            [resultGraphics + '-left', resultGraphics + '-tmp-0'],
+            [resultGraphics + '-right', resultGraphics + '-tmp-1'],
+            [resultGraphics + '-up', resultGraphics + '-tmp-2'],
+            [resultGraphics + '-down', resultGraphics + '-tmp-3']
+        ].forEach(function(layer, i, layers) {
+            if (i === 0) {
+                return;
+            }
+            elements.push(SVGElement.create('feBlend', {
+                'in': layers[i - 1][1],
+                in2: layer[0],
+                result: layer[1],
+                mode: mode
+            }));
+        });
+        return elements;
+    };
+
+    /**
+     * Increases the bright areas in an image
+     *
+     * Will create 4 offset layer and blend them using darken mode
+     */
+    SVGFilters.erode = function(inGraphics, resultGraphics) {
+        return SVGFilters._blendOffset(inGraphics, resultGraphics, 'darken');
+    };
+
+    SVGFilters.dilate = function(inGraphics, resultGraphics) {
+        return SVGFilters._blendOffset(inGraphics, resultGraphics, 'lighten');
+    };
+
+    p5.SVGFilters = SVGFilters;
+
+    return SVGFilters;
+};
+
+},{}],11:[function(require,module,exports){
 var constants = require('./constants');
+var SVGCanvas = require('svgcanvas');
 
 module.exports = function(p5) {
     // patch p5.Graphics for SVG
@@ -1807,13 +2507,13 @@ module.exports = function(p5) {
         _graphics.apply(this, args);
         if (renderer === constants.SVG) {
             // replace <canvas> with <svg>
-            var c = this._graphics.elt;
-            this._graphics = new p5.RendererSVG(c, pInst, false); // replace renderer
-            c = this._graphics.elt;
+            var c = this._renderer.elt;
+            this._renderer = new p5.RendererSVG(c, pInst, false); // replace renderer
+            c = this._renderer.elt;
             this.elt = c; // replace this.elt
             // do default again
-            this._graphics.resize(w, h);
-            this._graphics._applyDefaults();
+            this._renderer.resize(w, h);
+            this._renderer._applyDefaults();
         }
         return this;
     };
@@ -1827,7 +2527,8 @@ module.exports = function(p5) {
      *
      * @see https://github.com/zenozeng/p5.js-svg/issues/78
      *
-     * @method loadGraphics
+     * @function loadGraphics
+     * @memberof p5.prototype
      * @param {p5.Graphics} graphics the p5.Grphaics object
      * @param {Function(p5.Graphics)} [successCallback] Function to be called once
      *                                 the SVG Graphics is loaded. Will be passed the
@@ -1835,8 +2536,6 @@ module.exports = function(p5) {
      * @param {Function(Event)}    [failureCallback] called with event error.
      *
      * @example
-     * <div>
-     * <code>
      * pg = createGraphics(100, 100, SVG);
      * background(200);
      * pg.background(100);
@@ -1845,23 +2544,19 @@ module.exports = function(p5) {
      *      image(pgCanvas, 50, 50);
      *      image(pgCanvas, 0, 0, 50, 50);
      * });
-     * </code>
-     * </div>
      *
      */
     p5.prototype.loadGraphics = function(graphics, successCallback, failureCallback) {
-        if (graphics._graphics.svg) {
-            var svg = graphics._graphics.svg;
-            svg = (new XMLSerializer()).serializeToString(svg);
-            svg = new Blob([svg], {type: 'image/svg+xml;charset=utf-8'});
-            var url = URL.createObjectURL(svg);
-            var img = new Image();
-            var pg = this.createGraphics(graphics.width, graphics.height);
+        if (graphics._renderer.svg) {
+            var svg = graphics._renderer.svg;
+            var url = SVGCanvas.prototype.toDataURL.call(graphics._renderer.elt, 'image/svg+xml');
+            var pg = this.createGraphics(graphics.width, graphics.height, constants.SVG);
+            // also copy SVG, so we can keep vector SVG when image(pg) in SVG runtime
+            pg._renderer.svg = svg.cloneNode(true);
             pg.loadImage(url, function(img) {
                 pg.image(img);
-                URL.revokeObjectURL(url);
                 successCallback(pg);
-            });
+            }, failureCallback);
         } else {
             successCallback(graphics);
         }
@@ -1875,6 +2570,8 @@ module.exports = function(p5) {
      * Creates a SVG element in the document, and sets its width and
      * height in pixels. This method should be called only once at
      * the start of setup.
+     * @function createCanvas
+     * @memberof p5.prototype
      * @param {Number} width - Width (in px) for SVG Element
      * @param {Number} height - Height (in px) for SVG Element
      * @return {Graphics}
@@ -1884,14 +2581,17 @@ module.exports = function(p5) {
         var graphics = _createCanvas.apply(this, arguments);
         if (renderer === constants.SVG) {
             var c = graphics.elt;
-            this._setProperty('_graphics', new p5.RendererSVG(c, this, true));
+            this._setProperty('_renderer', new p5.RendererSVG(c, this, true));
             this._isdefaultGraphics = true;
-            this._graphics.resize(w, h);
-            this._graphics._applyDefaults();
+            this._renderer.resize(w, h);
+            this._renderer._applyDefaults();
         }
-        return this._graphics;
+        return this._renderer;
     };
 };
 
-},{"./constants":5}]},{},[1]);
+},{"./constants":4,"svgcanvas":3}],12:[function(require,module,exports){
+require('../src/index.js')(p5);
+
+},{"../src/index.js":7}]},{},[12]);
 });
