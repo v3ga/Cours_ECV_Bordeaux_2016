@@ -18,8 +18,8 @@ Design interactif — ECV Bordeaux — 2016
 ### Rendus
 http://www.v3ga.net/~ecv/2016/rendus/
 
-<a name="cours01" />
-## Cours #01 — Démarrer — 22 janvier
+<a name="cours01"></a>
+## Cours 01 — Démarrer — 22 janvier
 
 * **Bonjour !** Présentation du studio [2Roqs](http://www.2roqs.fr)
   * [projets artistiques](http://www.2roqs.fr/Exhibitions/)
@@ -50,7 +50,7 @@ http://www.v3ga.net/~ecv/2016/rendus/
   * www.processing.org, www.openprocessing.org  
   * quelques sites d'animation : http://beesandbombs.tumblr.com, www.beautifulprogramming.com
 
-<a name="cours02" />
+<a name="cours02"></a>
 ## Cours #02 — Animer et montrer — 29 janvier
 * **C'est parti !**  
   * gestionnaire de démarrage ([setup](http://p5js.org/reference/#/p5/setup)) et de dessin ([draw](http://p5js.org/reference/#/p5/draw))
@@ -74,7 +74,7 @@ http://www.v3ga.net/~ecv/2016/rendus/
 #### Liens
 * [«L'algorithme en art et en science»](http://algorithme.beautifulseams.com/) par Louis Eveillard.  
 
-<a name="cours03" />
+<a name="cours03"></a>
 ## Cours #03 — Mémoriser — 5 février
 * Rattrapage cours #02 : notions de temps et interactivité souris ([mouseX](http://p5js.org/reference/#/p5/mouseX) & [mouseY](http://p5js.org/reference/#/p5/mouseY)) + gestionnaires souris ([mousePressed()](http://p5js.org/reference/#/p5/mousePressed))
 * **Transformations du plan**
@@ -94,7 +94,7 @@ http://www.v3ga.net/~ecv/2016/rendus/
 1. Programmer une horloge.
 2. Programmer un motif géométrique dynamique en utilisant une combinaison de translate / rotate / scale, exporter plusieurs images avec la fonction [saveCanvas](http://p5js.org/reference/#/p5/saveCanvas)
 
-<a name="cours04" />
+<a name="cours04"></a>
 ## Cours #04 — Onduler et charger — 12 février
 * Fonctions trigonométriques : sinus et cosinus.
 * Démarrer un serveur local : [Local server tutorial](https://github.com/shiffman/The-Nature-of-Code-JTerm-2015/wiki/Local-Server-Tutorial) L'interêt est de pouvoir accéder au sketch depuis le navigateur par des adresses en *http://* (et non via *file://*), ce sera nécessaire pour charger des médias (images, fontes, sons).
@@ -107,7 +107,7 @@ http://www.v3ga.net/~ecv/2016/rendus/
 1. Réaliser un collage d'images / photos avec plusieurs images dont une au moins est en interaction avec la souris ou le son. Bonus s'il y a du son !
 ~~2. Imaginer un système transformant le volume sonore du micro en une image dynamique. Petit truc pour ne pas s'égosiller : jouer un morceau de musique ou des sons pour tester le système.~~
 
-<a name="cours05" />
+<a name="cours05"></a>
 ## Cours #05 — Contrôler et modéliser — 4 mars
 * Modélisation d'une particule simple: position, vitesse, accélération.
 * Structure de contrôle **if** : exécuter ou non un bloc de commandes sous certaines conditions. Application aux contraintes de déplacement d'une particule.
@@ -123,18 +123,18 @@ http://www.v3ga.net/~ecv/2016/rendus/
 #### Exercice — à rendre pour le vendredi 11 mars. 
 1. Reprendre le sketch de grille (boucle for) et le personnaliser en jouant sur le motif qui devra être interactif. Exporter une série d'images et les insérer dans la page de sketch à mettre sur le FTP.
 
-<a name="cours06" />
+<a name="cours06"></a>
 ## Cours #06 — Collectionner — 11 mars
 * Les tableaux, gestion d'une collection d'objets.
 * Application à la modélisation d'un système de particules.
 
-<a name="cours07" />
+<a name="cours07"></a>
 ## Cours #07 — Écouter et parler — 18 mars
 * captation du volume sonore via [p5.sound.js](http://p5js.org/reference/#/libraries/p5.sound) (sketch *01-micro*)
 * reconnaissance vocale via [p5.speech.js](http://abilitylab.nyu.edu/p5.js-speech/)
 * analayse d'une chaîne de caractère (méthode [split](http://p5js.org/reference/#/p5/split)), création d'un automate qui réagit à la voix (sketch *02-voix*)
 
-<a name="cours08" />
+<a name="cours08"></a>
 ## Cours #08 — Générer — 25 mars
 * Récupération d'un tableau de points pour un glype d'une fonte.
 * Projet de typographie générative
